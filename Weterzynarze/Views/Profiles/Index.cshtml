@@ -1,0 +1,87 @@
+﻿@model PagedList.IPagedList<Weterzynarze.ViewModels.Profile>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Profiles";
+}
+
+
+<h2>Registered Profiles</h2>
+
+@if (Context.User.IsInRole("Admin") || Context.User.IsInRole("Moderator"))
+{
+    <p>
+        @Html.ActionLink("Register New", "Create")
+    </p>
+}
+
+
+@using (Html.BeginForm("Index", "Profiles", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        <label for="SearchString">Search Phrase</label>
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @id = "SearchString", @placeholder = "np. horse" })
+    </div>
+    <button class="btn btn-success" type="submit" value="Search"><span class="glyphicon glyphicon-search"></span> Search</button>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+        </th>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Phone)
+        
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Created)
+
+        </th>
+        <th>Options</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
