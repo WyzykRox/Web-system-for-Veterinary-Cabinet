@@ -13,9 +13,8 @@ namespace Weterzynarze.ViewModels
         public int ID { get; set; }
         public string Name { get; set; }
         public string Picture { get; set; }
-
         public DateTime Created { get; } = DateTime.Now;
-        
+
         public virtual Profile Owner { get; set; }
 
     }
