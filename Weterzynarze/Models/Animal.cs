@@ -12,6 +12,7 @@ namespace Weterzynarze.ViewModels
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
+        public string HairColor { get; set; }
         public string Picture { get; set; }
         public DateTime Created { get; } = DateTime.Now;
 
