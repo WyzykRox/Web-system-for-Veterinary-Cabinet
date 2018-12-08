@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using Weterzynarze.Models;
 using Weterzynarze.ViewModels;
 
 namespace Weterzynarze.DAL
@@ -16,13 +17,15 @@ namespace Weterzynarze.DAL
         }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Animal> Animals { get; set; }
-        
+        public DbSet<HealthCard> HealthCards { get; set; }
+        public DbSet<Visit> Visits { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
            
         }
 
-        public System.Data.Entity.DbSet<Weterzynarze.viewModels.Image> Images { get; set; }
+        public DbSet<viewModels.Image> Images { get; set; }
     }
 }

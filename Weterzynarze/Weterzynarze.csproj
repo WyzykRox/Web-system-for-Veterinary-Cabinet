@@ -202,6 +202,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
+    <Compile Include="Controllers\HealthCardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -221,7 +222,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HealthCard.cs" />
-    <Compile Include="Models\HistoryVisit.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -308,6 +308,11 @@
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Edit.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Views\HealthCards\Create.cshtml" />
+    <Content Include="Views\HealthCards\Delete.cshtml" />
+    <Content Include="Views\HealthCards\Details.cshtml" />
+    <Content Include="Views\HealthCards\Edit.cshtml" />
+    <Content Include="Views\HealthCards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

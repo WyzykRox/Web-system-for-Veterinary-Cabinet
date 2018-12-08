@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Weterzynarze.Models;
 using Weterzynarze.viewModels;
 
 namespace Weterzynarze.ViewModels
@@ -17,6 +18,7 @@ namespace Weterzynarze.ViewModels
         public DateTime Created { get; } = DateTime.Now;
 
         public virtual Profile Owner { get; set; }
+        public virtual List<HealthCard> HealthCard { get; set; }
 
     }
 }
