@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,7 +19,7 @@ namespace Weterzynarze.Controllers
         // GET: HealthCards
         public ActionResult Index()
         {
-            var healthCards = db.HealthCards.Include(h => h.Visit);
+            var healthCards = db.HealthCards.Include(h => h.Animal);
             return View(healthCards.ToList());
         }
 
@@ -38,27 +39,43 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: HealthCards/Create
-        public ActionResult Create()
+        public ActionResult Create(int Animal_ID)
         {
-            ViewBag.ID = new SelectList(db.Visits, "ID", "Description");
+
+
+            var item = db.Animals.Where(x => x.ID == Animal_ID ).First();
+
+            var data = new SelectList(db.Animals, "ID", "Name", item).First();
+
+            List<SelectListItem> lists = new List<SelectListItem>
+            {
+                data
+            };
+
+            ViewBag.AnimalID = lists;
+
             return View();
         }
 
         // POST: HealthCards/Create
-        // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
-        // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment")] HealthCard healthCard)
+        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID")] HealthCard healthCard)
         {
+            
+     
             if (ModelState.IsValid)
             {
+            var animals = db.Animals.Where(x => x.ID == healthCard.AnimalID).First();
+              healthCard.Animal = animals;
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID = new SelectList(db.Visits, "ID", "Description", healthCard.ID);
+            ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");
             return View(healthCard);
         }
 
@@ -74,24 +91,25 @@ namespace Weterzynarze.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID = new SelectList(db.Visits, "ID", "Description", healthCard.ID);
+    
             return View(healthCard);
         }
 
         // POST: HealthCards/Edit/5
-        // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
-        // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment")] HealthCard healthCard)
+        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID")] HealthCard healthCard)
         {
             if (ModelState.IsValid)
             {
+          
                 db.Entry(healthCard).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID = new SelectList(db.Visits, "ID", "Description", healthCard.ID);
+          
             return View(healthCard);
         }
 

@@ -15,8 +15,26 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Colour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Breed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DistinuishingMarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChipId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Picture)
-        </th>   
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
         <th></th>
     </tr>
 
@@ -26,11 +44,27 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Colour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Breed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DistinuishingMarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChipId)
+        </td>
+        <td>
             <a href="@Url.Action("Details", "Animals", new { id = item.ID })" class="links">
                 <img src="~/Picture/@item.Picture" alt="" height="50px" width="50px" />
-               
             </a>
-                  
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

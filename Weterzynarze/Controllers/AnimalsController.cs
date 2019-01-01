@@ -6,11 +6,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Weterzynarze.DAL;
 using Weterzynarze.ViewModels;
+
 
 namespace Weterzynarze.Controllers
 {
@@ -18,18 +18,19 @@ namespace Weterzynarze.Controllers
     {
         private WetContext db = new WetContext();
 
+        // GET: ShowAll
         public ActionResult ShowAll()
         {
             return View(db.Animals.ToList());
         }
 
         // GET: Animals
-        // shows user animals list
         public ActionResult Index()
         {
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
-            return View(db.Animals.Where(_=>_.Owner.Email == user.Email));
+            return View(db.Animals.Where(_ => _.Owner.Email == user.Email));
+
         }
 
         // GET: Animals/Details/5
@@ -58,16 +59,17 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Picture")] Animal animal)
+        public ActionResult Create([Bind(Include = "ID,Name,Colour,Sex,Breed,DistinuishingMarks,ChipId,Picture,Created")] Animal animal)
         {
-   
+
+
             if (ModelState.IsValid)
             {
 
                 HttpPostedFileBase file = Request.Files["Obrazki"];
                 if (file != null && file.ContentLength > 0)
                 {
-                   
+
                     animal.Picture = file.FileName;
                     string path = (HttpContext.Server.MapPath("~/Picture/") + animal.Picture);
                     file.SaveAs(path);
@@ -75,7 +77,7 @@ namespace Weterzynarze.Controllers
 
                 var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                 var user = userManager.FindByName(User.Identity.Name);
-                animal.Owner = db.Profiles.SingleOrDefault(_=>_.Email == user.Email);
+                animal.Owner = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
                 db.Animals.Add(animal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,7 +93,7 @@ namespace Weterzynarze.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var animal = db.Animals.SingleOrDefault(_ => _.ID == id);
+            Animal animal = db.Animals.Find(id);
             if (animal == null)
             {
                 return HttpNotFound();
@@ -104,7 +106,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Picture")] Animal animal)
+        public ActionResult Edit([Bind(Include = "ID,Name,Colour,Sex,Breed,DistinuishingMarks,ChipId,Picture,Created")] Animal animal)
         {
             if (ModelState.IsValid)
             {

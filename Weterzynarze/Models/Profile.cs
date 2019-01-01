@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Weterzynarze.Models;
 
 namespace Weterzynarze.ViewModels
 {
@@ -17,6 +18,8 @@ namespace Weterzynarze.ViewModels
         public string LastName { get; set; }
         public string Phone { get; set; }
 
+
+        public virtual List<Visit> Zapiswiz { get; set; }
         public DateTime Created { get; } = DateTime.Now;
         public virtual List<Animal> Pets { get; set; }
       

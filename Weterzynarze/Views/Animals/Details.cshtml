@@ -13,31 +13,69 @@
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.Owner.Email)
+            @Html.DisplayNameFor(model => model.Colour)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.Owner.Email)
+            @Html.DisplayFor(model => model.Colour)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.Created)
+            @Html.DisplayNameFor(model => model.Sex)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.Created)
+            @Html.DisplayFor(model => model.Sex)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Breed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Breed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DistinuishingMarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DistinuishingMarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChipId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChipId)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Picture)
         </dt>
+
         <dd>
             <img src="~/Picture/@Model.Picture" alt="" height="50px" width="50px" />
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Created)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created)
+        </dd>
+
     </dl>
 </div>
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")

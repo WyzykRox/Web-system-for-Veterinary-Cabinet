@@ -58,7 +58,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            <img src="~/Picture/@item.Picture" alt="" height="50px" width="50px" />
+            <a href="@Url.Action("Details", "Animals", new { id = item.ID })" class="links">
+                <img src="~/Picture/@item.Picture" alt="" height="50px" width="50px" />
+            </a>
         </td>
     </tr>
       

@@ -14,10 +14,8 @@ namespace Weterzynarze.Models
         public DateTime CreateTime { get; set; }
         public string Description { get; set; }
         public string Treatment { get; set; }
-            
-        [Required]
+        public int AnimalID { get; set; }
+       
         public virtual Animal Animal { get; set; }
-        [Required]
-        public virtual Visit Visit { get; set; }
     }
 }

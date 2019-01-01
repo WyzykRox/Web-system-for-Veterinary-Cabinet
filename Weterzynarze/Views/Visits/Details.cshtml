@@ -1,0 +1,45 @@
+﻿@model Weterzynarze.Models.Visit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zwierzak.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zwierzak.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Create Health Card", "Create", "HealthCards", new { Animal_ID = Model.AnimalID }, null)
+    @Html.RouteLink("Crate HealthCard", "Health", new { Animal_ID = Model.AnimalID })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+    @Html.ActionLink("Back to List", "Index")
+</p>

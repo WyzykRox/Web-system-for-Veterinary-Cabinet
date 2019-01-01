@@ -18,6 +18,11 @@ namespace Weterzynarze
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+            name: "Health",
+            url: "{controller}/{action}/{Animal_ID}",
+            defaults: new { controller = "HealthCards", action = "Create", Animal_ID = UrlParameter.Optional}
+            );
         }
     }
 }

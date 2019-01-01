@@ -11,10 +11,14 @@ namespace Weterzynarze.Models
     {
         [Key]
         public int ID { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime VisitDate { get; set; }
         public string Description { get; set; }
+        public int AnimalID { get; set; }
+
 
         public virtual Profile User { get; set; }
-        public virtual HealthCard Wpis { get; set; }
+        public virtual Animal Zwierzak { get; set; }
     }
 }
