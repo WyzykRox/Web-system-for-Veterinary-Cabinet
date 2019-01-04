@@ -42,7 +42,9 @@ namespace Weterzynarze.Controllers
         // GET: Visits/Create
         public ActionResult Create()
         {
-            ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            var user = userManager.FindByName(User.Identity.Name);
+            ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.Owner.Email == user.Email), "ID", "Name");
             return View();
         }
 
@@ -53,7 +55,10 @@ namespace Weterzynarze.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,VisitDate,Description,AnimalID")] Visit visit)
         {
-            if (ModelState.IsValid)
+            DateTime date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).First();
+
+           int result = DateTime.Compare(date, visit.VisitDate);
+            if (ModelState.IsValid && result != 0)
             {
                 var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                 var user = userManager.FindByName(User.Identity.Name);

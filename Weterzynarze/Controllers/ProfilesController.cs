@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -64,9 +66,20 @@ namespace Weterzynarze.Controllers
             return View(profiles.ToPagedList(pageNumber, pageSize));
         }
 
+        // GET: Profiles/MyDetails/5
+        public ActionResult MyDetails()
+        {
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            var user = userManager.FindByName(User.Identity.Name);
+            var prof = db.Profiles.Where(_ => _.Email == user.Email).First();
+            Profile profile = prof;
+            return View(profile);
+        }
+
         // GET: Profiles/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

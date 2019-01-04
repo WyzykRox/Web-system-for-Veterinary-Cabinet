@@ -11,6 +11,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            <img src="~/Picture/@Model.Picture" alt="" height="200px" width="200px" />
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -56,14 +63,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.ChipId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-
-        <dd>
-            <img src="~/Picture/@Model.Picture" alt="" height="50px" width="50px" />
         </dd>
 
         <dt>

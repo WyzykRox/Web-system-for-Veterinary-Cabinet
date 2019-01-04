@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnimalsController.cs" />
     <Compile Include="Controllers\HealthCardsController.cs" />
+    <Compile Include="Controllers\HistryVisitsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -217,8 +218,13 @@
     <Compile Include="Migrations\201901011418458_Initial.Designer.cs">
       <DependentUpon>201901011418458_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901041850433_base.cs" />
+    <Compile Include="Migrations\201901041850433_base.Designer.cs">
+      <DependentUpon>201901041850433_base.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HealthCard.cs" />
+    <Compile Include="Models\HistryVisit.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
@@ -403,6 +409,12 @@
     <Content Include="Views\HealthCards\Details.cshtml" />
     <Content Include="Views\HealthCards\Edit.cshtml" />
     <Content Include="Views\HealthCards\Index.cshtml" />
+    <Content Include="Views\Profiles\MyDetails.cshtml" />
+    <Content Include="Views\HistryVisits\Create.cshtml" />
+    <Content Include="Views\HistryVisits\Delete.cshtml" />
+    <Content Include="Views\HistryVisits\Details.cshtml" />
+    <Content Include="Views\HistryVisits\Edit.cshtml" />
+    <Content Include="Views\HistryVisits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -424,6 +436,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901011418458_Initial.resx">
       <DependentUpon>201901011418458_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901041850433_base.resx">
+      <DependentUpon>201901041850433_base.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

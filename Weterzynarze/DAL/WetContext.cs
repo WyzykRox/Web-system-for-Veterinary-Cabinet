@@ -19,6 +19,7 @@ namespace Weterzynarze.DAL
         public DbSet<Animal> Animals { get; set; }
         public DbSet<HealthCard> HealthCards { get; set; }
         public DbSet<Visit> Visits { get; set; }
+        public DbSet<HistryVisit> HistoryVisits { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
