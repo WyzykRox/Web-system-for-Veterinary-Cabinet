@@ -25,11 +25,11 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("My Animal", "Index", "Animals")</li>
-                    <li>@Html.ActionLink("My Profile", "MyDetails", "Profiles")</li>
-                    <li>@Html.ActionLink("My Visits", "MyVisits", "Visits")</li>
-
-
+                    @Html.Partial("_User")
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                    <li>@Html.ActionLink("Dzisiejsze wizyty", "ToDayvisits", "Visits")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

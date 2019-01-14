@@ -24,6 +24,14 @@ namespace Weterzynarze.Controllers
             return View(visits.ToList());
         }
 
+        // GET: ToDayvisits
+        public ActionResult ToDayvisits()
+        {
+            DateTime time = System.DateTime.Now;
+            var visits = db.Visits.Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date ).Include(v => v.Zwierzak);
+            return View(visits.ToList());
+        }
+
         // GET: My Visits
         public ActionResult MyVisits()
         {
