@@ -26,41 +26,31 @@ namespace Weterzynarze.DAL
             var user = new ApplicationUser { UserName = "janusz@janusz.com" };
             string pass = "janusz";
             userManager.Create(user, pass);
-            userManager.AddToRole(user.Id, "User");
+            userManager.AddToRole(user.Id, "Admin");
 
             var user2 = new ApplicationUser { UserName = "grazyna@grazyna.com" };
             string pass2 = "grazyna";
             userManager.Create(user2, pass2);
-            userManager.AddToRole(user.Id, "User");
+            userManager.AddToRole(user.Id, "Admin");
 
             var profiles = new List<Profile>
             {
                 new Profile
                 {
-                    Email = user.UserName,
+                    Email = "janusz@janusz.com",
                     FirstName ="Grażyna",
                     LastName = "Kowalska",
                 },
                 new Profile
                 {
-                    Email = user2.UserName,
+                    Email = "grazyna@grazyna.com",
                     FirstName ="Grażyna",
                     LastName = "Kowalska",
                 }
             };
 
-            //var animals = new List<Animal>
-            //{
-            //    new Animal { Name = "Kot 1", Owner = profiles[0] },
-            //    new Animal { Name = "Pies 1", Owner = profiles[0] },
-            //    new Animal { Name = "Kot 2", Owner = profiles[1] },
-            //    new Animal { Name = "Pies 2", Owner = profiles[1] }
-            //};
-
-            //animals.ForEach(i => context.Animals.Add(i));
-            //context.SaveChanges();
-            //profiles.ForEach(p => context.Profiles.Add(p));
-            //context.SaveChanges();
+            profiles.ForEach(p => context.Profiles.Add(p));
+            context.SaveChanges();
 
 
         }

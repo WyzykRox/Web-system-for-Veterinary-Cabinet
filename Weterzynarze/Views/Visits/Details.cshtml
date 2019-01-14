@@ -38,7 +38,7 @@
 </div>
 <p>
 
-    @Html.ActionLink("Create Health Card", "Create", "HealthCards", new { Animal_ID = Model.AnimalID }, null)
+    @Html.ActionLink("Create Health Card", "Create", "HealthCards", new { Animal_ID = Model.AnimalID, date = Model.VisitDate}, null)
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -24,6 +24,17 @@ namespace Weterzynarze.Controllers
             return View(visits.ToList());
         }
 
+        // GET: My Visits
+        public ActionResult MyVisits()
+        {
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            var user = userManager.FindByName(User.Identity.Name);
+
+
+            var visits = db.Visits.Where(_ => _.User.Email == user.Email).Include(v => v.Zwierzak);
+            return View(visits.ToList());
+        }
+
         // GET: Visits/Details/5
         public ActionResult Details(int? id)
         {
@@ -55,20 +66,32 @@ namespace Weterzynarze.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,VisitDate,Description,AnimalID")] Visit visit)
         {
-            DateTime date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).First();
+            
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            var user = userManager.FindByName(User.Identity.Name);
+
+            DateTime date;
+            date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).FirstOrDefault(); //zwraca nic :D jeśli datanie istnieje :/
+            if ( date == visit.VisitDate)
+            {
+                date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).First();
+            }else date = new DateTime();
 
            int result = DateTime.Compare(date, visit.VisitDate);
+
+
             if (ModelState.IsValid && result != 0)
             {
-                var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-                var user = userManager.FindByName(User.Identity.Name);
+             
                 visit.User = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
                 db.Visits.Add(visit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
-
-            ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");
+            string noResult = "Data zajęta wybierz inną";
+            ViewBag.Message = noResult;
+ 
+            ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.Owner.Email == user.Email), "ID", "Name");
             return View(visit);
         }
 

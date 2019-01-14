@@ -415,6 +415,7 @@
     <Content Include="Views\HistryVisits\Details.cshtml" />
     <Content Include="Views\HistryVisits\Edit.cshtml" />
     <Content Include="Views\HistryVisits\Index.cshtml" />
+    <Content Include="Views\Visits\MyVisits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

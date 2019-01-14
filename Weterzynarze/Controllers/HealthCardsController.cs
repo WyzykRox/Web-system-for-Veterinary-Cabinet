@@ -39,10 +39,12 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: HealthCards/Create
-        public ActionResult Create(int Animal_ID)
+        public ActionResult Create(int Animal_ID, DateTime date)
         {
-
-
+          
+            ViewBag.Date1 = new SelectList(db.Visits.Where(_ => _.VisitDate == date), "VisitDate", "VisitDate");
+            
+            ViewBag.Description = new SelectList( db.Visits.Where(_ => _.VisitDate == date), "Description", "Description");
             var item = db.Animals.Where(x => x.ID == Animal_ID ).First();
 
             var data = new SelectList(db.Animals, "ID", "Name", item).First();
@@ -72,7 +74,7 @@ namespace Weterzynarze.Controllers
               healthCard.Animal = animals;
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime });
             }
 
             ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");

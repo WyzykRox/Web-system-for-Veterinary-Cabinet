@@ -50,7 +50,7 @@ namespace Weterzynarze.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,VisitDate,Description,AnimalID")] HistryVisit histryVisit)
-        {
+        {  
             if (ModelState.IsValid)
             {
                 db.HistoryVisits.Add(histryVisit);
