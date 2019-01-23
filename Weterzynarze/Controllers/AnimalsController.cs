@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -18,6 +19,26 @@ namespace Weterzynarze.Controllers
     {
         private WetContext db = new WetContext();
 
+        public static void SendMail(string to, string body, string subject)
+        {
+            var message = new System.Net.Mail.MailMessage(ConfigurationManager.AppSettings["sender"], to)
+            {
+                Subject = subject,
+                Body = body
+            };
+            var smtpClient = new System.Net.Mail.SmtpClient
+            {
+                Host = ConfigurationManager.AppSettings["smtpHost"],
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential(
+                    ConfigurationManager.AppSettings["sender"],
+                    ConfigurationManager.AppSettings["passwd"]),
+                EnableSsl = true,
+                Port = 587
+            };
+            smtpClient.Send(message);
+        }
+
         // GET: ShowAll
         public ActionResult ShowAll()
         {
@@ -27,6 +48,8 @@ namespace Weterzynarze.Controllers
         // GET: Animals
         public ActionResult Index()
         {
+            SendMail(User.Identity.Name, "Przypomnienie   " + "http://localhost:56109/Animals/index" ," Powiadomienie z gabinetu Gab wet" );
+
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
             return View(db.Animals.Where(_ => _.Owner.Email == user.Email));
@@ -151,5 +174,8 @@ namespace Weterzynarze.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+
     }
 }
