@@ -20,6 +20,7 @@ namespace Weterzynarze.Controllers
         private WetContext db = new WetContext();
 
         // GET: Profiles
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -67,6 +68,7 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: Profiles/MyDetails/5
+        [Authorize(Roles = "Admin,User")]
         public ActionResult MyDetails()
         {
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
@@ -77,6 +79,7 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: Profiles/Details/5
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Details(int? id)
         {
 
@@ -102,6 +105,7 @@ namespace Weterzynarze.Controllers
         // POST: Profiles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -118,7 +122,7 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: Profiles/Edit/5
-
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -138,7 +142,7 @@ namespace Weterzynarze.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Edit([Bind(Include = "ID,Email,FirstName,LastName,Created")] Profile profile)
         {
             if (ModelState.IsValid)
@@ -151,7 +155,7 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: Profiles/Delete/5
-
+        [Authorize(Roles = "Admin,User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -165,7 +169,7 @@ namespace Weterzynarze.Controllers
             }
             return View(profile);
         }
-
+        [Authorize(Roles = "Admin,User")]
         // POST: Profiles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -177,7 +181,7 @@ namespace Weterzynarze.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin,User")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -186,7 +190,7 @@ namespace Weterzynarze.Controllers
             }
             base.Dispose(disposing);
         }
-
+       
         public String GetProfile(String email)
         {
             if (email == null)

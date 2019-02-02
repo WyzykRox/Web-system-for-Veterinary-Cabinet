@@ -44,12 +44,15 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { htmlAttributes = new { @class = "btn btn-primary" } })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
 </p>
+<br />
+<hr />
 <thead>
-    <h5>Moje zwierzaki</h5>
+    <h4>Moje zwierzaki</h4>
 </thead>
-<table>
+
+<table class="table">
     <th>
         @Html.DisplayNameFor(model => model.Pets.FirstOrDefault().Name)
     </th>
@@ -76,9 +79,13 @@
 
     }
 </table>
-<h5>Moje wizyty</h5>
+<br />
+<hr />
+<thead>
+<h4>Moje wizyty</h4>
+</thead>
 
-<table>
+<table class="table">
 
     <th>
         @Html.DisplayNameFor(model => model.Zapiswiz.FirstOrDefault().VisitDate)
@@ -98,7 +105,7 @@
                 @Html.DisplayFor(modelItem => item.VisitDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Zwierzak)
+                @Html.DisplayFor(modelItem => item.Zwierzak.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

@@ -214,9 +214,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902020928002_initial.cs" />
-    <Compile Include="Migrations\201902020928002_initial.Designer.cs">
-      <DependentUpon>201902020928002_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902020940157_Initial.cs" />
+    <Compile Include="Migrations\201902020940157_Initial.Designer.cs">
+      <DependentUpon>201902020940157_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HealthCard.cs" />
@@ -434,8 +434,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902020928002_initial.resx">
-      <DependentUpon>201902020928002_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902020940157_Initial.resx">
+      <DependentUpon>201902020940157_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
