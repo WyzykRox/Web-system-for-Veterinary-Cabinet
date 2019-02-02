@@ -9,7 +9,7 @@ namespace Weterzynarze.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Weterzynarze.DAL.WetContext context)

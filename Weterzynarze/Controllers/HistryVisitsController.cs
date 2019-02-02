@@ -49,7 +49,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,VisitDate,Description,AnimalID")] HistryVisit histryVisit)
+        public ActionResult Create([Bind(Include = "ID,VisitDate,Description,Attention,AnimalID")] HistryVisit histryVisit)
         {  
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,VisitDate,Description,AnimalID")] HistryVisit histryVisit)
+        public ActionResult Edit([Bind(Include = "ID,VisitDate,Description,Attention,AnimalID")] HistryVisit histryVisit)
         {
             if (ModelState.IsValid)
             {

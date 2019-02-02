@@ -15,6 +15,7 @@ namespace Weterzynarze.Models
         [DataType(DataType.DateTime)]
         public DateTime VisitDate { get; set; }
         public string Description { get; set; }
+        public string Attention { get; set; }
         public int AnimalID { get; set; }
 
 

@@ -41,8 +41,76 @@
         </dd>
 
     </dl>
+
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { htmlAttributes = new { @class = "btn btn-primary" } })
+</p>
+<thead>
+    <h5>Moje zwierzaki</h5>
+</thead>
+<table>
+    <th>
+        @Html.DisplayNameFor(model => model.Pets.FirstOrDefault().Name)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Pets.FirstOrDefault().Picture)
+    </th>
+    @foreach (var item in Model.Pets)
+    {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Animals", new { id = item.ID })" class="links">
+                    <img src="~/Picture/@item.Picture" alt="" height="50px" width="50px" />
+                </a>
+            </td>
+        </tr>
+
+
+
+
+    }
+</table>
+<h5>Moje wizyty</h5>
+
+<table>
+
+    <th>
+        @Html.DisplayNameFor(model => model.Zapiswiz.FirstOrDefault().VisitDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Zapiswiz.FirstOrDefault().Zwierzak)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Zapiswiz.FirstOrDefault().Description)
+    </th>
+    @foreach (var item in Model.Zapiswiz)
+    {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zwierzak)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+
+
+
+
+    }
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) 
     @Html.ActionLink("Back to Home", "Index", "Home")
 </p>
