@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201902020940157_Initial.Designer.cs">
       <DependentUpon>201902020940157_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902060918299_base2.cs" />
+    <Compile Include="Migrations\201902060918299_base2.Designer.cs">
+      <DependentUpon>201902060918299_base2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HealthCard.cs" />
     <Compile Include="Models\HistryVisit.cs" />
@@ -437,6 +441,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902020940157_Initial.resx">
       <DependentUpon>201902020940157_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902060918299_base2.resx">
+      <DependentUpon>201902060918299_base2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

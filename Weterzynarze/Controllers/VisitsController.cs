@@ -51,12 +51,11 @@ namespace Weterzynarze.Controllers
         public ActionResult ToDayvisits() 
         {
             DateTime time = DateTime.Now;
-            var visits = db.Visits.Include(v => v.Zwierzak).Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time).ToList();
-            var visits2 = db.Visits
-                                    .Include(v => v.Zwierzak)
-                                    .Where(_ => _.VisitDate.Year == time.Year &&
-                                        _.VisitDate.Month == time.Month &&
-                                        _.VisitDate.Day == time.Day).ToList();
+           // var visits = db.Visits.Include(v => v.Zwierzak).ToList();
+            //visits = visits.Where(_ => _.VisitDate.Date.Year == time.Date.Year && _.VisitDate.Date.Month == time.Date.Month && _.VisitDate.Date.Day == time.Date.Day).ToList();
+            var visits = db.Visits.Include(v => v.Zwierzak).Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date).ToList();
+
+            
             return View(visits);
         }
 
@@ -92,6 +91,10 @@ namespace Weterzynarze.Controllers
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
             ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.Owner.Email == user.Email), "ID", "Name");
+            if(ViewBag.AnimalID == null)
+            {
+                return RedirectToAction("Create", "Animal");
+            }
             return View();
         }
 
@@ -122,6 +125,7 @@ namespace Weterzynarze.Controllers
                 visit.User = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
                 db.Visits.Add(visit);
                 db.SaveChanges();
+                SendMail(User.Identity.Name, "Dziekujemy za zapisanie się na wizytę dnia: " + visit.VisitDate, " Powiadomienie z gabinetu Gab wet");
                 return RedirectToAction("Index","Home");
             }
             string noResult = "Data zajęta wybierz inną";
