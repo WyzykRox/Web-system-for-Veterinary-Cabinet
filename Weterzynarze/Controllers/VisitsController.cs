@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,11 +48,16 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: ToDayvisits
-        public ActionResult ToDayvisits()
+        public ActionResult ToDayvisits() 
         {
-            DateTime time = System.DateTime.Now;
-            var visits = db.Visits.Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date ).Include(v => v.Zwierzak);
-            return View(visits.ToList());
+            DateTime time = DateTime.Now;
+            var visits = db.Visits.Include(v => v.Zwierzak).Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time).ToList();
+            var visits2 = db.Visits
+                                    .Include(v => v.Zwierzak)
+                                    .Where(_ => _.VisitDate.Year == time.Year &&
+                                        _.VisitDate.Month == time.Month &&
+                                        _.VisitDate.Day == time.Day).ToList();
+            return View(visits);
         }
 
         // GET: My Visits
@@ -101,7 +107,7 @@ namespace Weterzynarze.Controllers
             var user = userManager.FindByName(User.Identity.Name);
 
             DateTime date;
-            date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).FirstOrDefault(); //zwraca nic :D jeśli datanie istnieje :/
+            date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).FirstOrDefault();
             if ( date == visit.VisitDate)
             {
                 date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).First();
@@ -110,7 +116,7 @@ namespace Weterzynarze.Controllers
            int result = DateTime.Compare(date, visit.VisitDate);
 
 
-            if (ModelState.IsValid && result != 0)
+            if (ModelState.IsValid && result != 0 && (visit.VisitDate.Hour >= 8)== true && (visit.VisitDate.Hour < 16)==true)
             {
              
                 visit.User = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
