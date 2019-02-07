@@ -91,9 +91,10 @@ namespace Weterzynarze.Controllers
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
             ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.Owner.Email == user.Email), "ID", "Name");
-            if(ViewBag.AnimalID == null)
+            int spr = Enumerable.Count(ViewBag.AnimalID);
+            if (spr == 0)
             {
-                return RedirectToAction("Create", "Animal");
+                return RedirectToAction("Create", "Animalswwww");
             }
             return View();
         }
