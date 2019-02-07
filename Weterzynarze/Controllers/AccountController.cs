@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -172,7 +173,7 @@ namespace Weterzynarze.Controllers
                         WetContext db = new WetContext();
                         db.Profiles.Add(userProfile);
                         db.SaveChanges();
-
+                        SendMail(User.Identity.Name, "Dziękujemy za założenie konta na naszym portalu", " Powiadomienie z gabinetu Gab wet");
 
 
 
@@ -190,6 +191,26 @@ namespace Weterzynarze.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public static void SendMail(string to, string body, string subject)
+        {
+            var message = new System.Net.Mail.MailMessage(ConfigurationManager.AppSettings["sender"], to)
+            {
+                Subject = subject,
+                Body = body
+            };
+            var smtpClient = new System.Net.Mail.SmtpClient
+            {
+                Host = ConfigurationManager.AppSettings["smtpHost"],
+                UseDefaultCredentials = false,
+                Credentials = new System.Net.NetworkCredential(
+                    ConfigurationManager.AppSettings["sender"],
+                    ConfigurationManager.AppSettings["passwd"]),
+                EnableSsl = true,
+                Port = 587
+            };
+            smtpClient.Send(message);
         }
 
         //

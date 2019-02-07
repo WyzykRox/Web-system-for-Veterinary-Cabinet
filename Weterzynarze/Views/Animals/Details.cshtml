@@ -76,6 +76,39 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edytuj dane zwierzaka", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+</p>
+<br />
+<hr />
+<thead>
+    <h4>Karta zdrowia</h4>
+</thead>
+
+<table class="table">
+    <th>
+        @Html.DisplayNameFor(model => model.HealthCard.FirstOrDefault().CreateTime)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.HealthCard.FirstOrDefault().Description)
+    </th>
+    @foreach (var item in Model.HealthCard)
+    {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+        </tr>
+
+
+
+
+    }
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" })
 </p>

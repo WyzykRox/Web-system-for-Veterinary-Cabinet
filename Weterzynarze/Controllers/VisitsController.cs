@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,11 +48,15 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: ToDayvisits
-        public ActionResult ToDayvisits()
+        public ActionResult ToDayvisits() 
         {
-            DateTime time = System.DateTime.Now;
-            var visits = db.Visits.Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date ).Include(v => v.Zwierzak);
-            return View(visits.ToList());
+            DateTime time = DateTime.Now;
+           // var visits = db.Visits.Include(v => v.Zwierzak).ToList();
+            //visits = visits.Where(_ => _.VisitDate.Date.Year == time.Date.Year && _.VisitDate.Date.Month == time.Date.Month && _.VisitDate.Date.Day == time.Date.Day).ToList();
+            var visits = db.Visits.Include(v => v.Zwierzak).Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date).ToList();
+
+            
+            return View(visits);
         }
 
         // GET: My Visits
@@ -86,6 +91,10 @@ namespace Weterzynarze.Controllers
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
             ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.Owner.Email == user.Email), "ID", "Name");
+            if(ViewBag.AnimalID == null)
+            {
+                return RedirectToAction("Create", "Animal");
+            }
             return View();
         }
 
@@ -101,7 +110,7 @@ namespace Weterzynarze.Controllers
             var user = userManager.FindByName(User.Identity.Name);
 
             DateTime date;
-            date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).FirstOrDefault(); //zwraca nic :D jeśli datanie istnieje :/
+            date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).FirstOrDefault();
             if ( date == visit.VisitDate)
             {
                 date = db.Visits.Where(_ => _.VisitDate == visit.VisitDate).Select(_ => _.VisitDate).First();
@@ -110,12 +119,13 @@ namespace Weterzynarze.Controllers
            int result = DateTime.Compare(date, visit.VisitDate);
 
 
-            if (ModelState.IsValid && result != 0)
+            if (ModelState.IsValid && result != 0 && (visit.VisitDate.Hour >= 8)== true && (visit.VisitDate.Hour < 16)==true)
             {
              
                 visit.User = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
                 db.Visits.Add(visit);
                 db.SaveChanges();
+                SendMail(User.Identity.Name, "Dziekujemy za zapisanie się na wizytę dnia: " + visit.VisitDate, " Powiadomienie z gabinetu Gab wet");
                 return RedirectToAction("Index","Home");
             }
             string noResult = "Data zajęta wybierz inną";

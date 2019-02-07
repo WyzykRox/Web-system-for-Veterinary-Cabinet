@@ -48,7 +48,7 @@ namespace Weterzynarze.Controllers
         // GET: Animals
         public ActionResult Index()
         {
-            SendMail(User.Identity.Name, "Przypomnienie   " + "http://localhost:56109/Animals/index" ," Powiadomienie z gabinetu Gab wet" );
+           
 
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
