@@ -37,6 +37,8 @@ namespace Weterzynarze.ViewModels
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
+
+       
     }
 
     public class ForgotViewModel
@@ -60,6 +62,9 @@ namespace Weterzynarze.ViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+   
+
     }
 
     public class RegisterViewModel
@@ -79,6 +84,9 @@ namespace Weterzynarze.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Akceptujesz Rodo?")]
+        public bool Rodo { get; set; }
     }
 
     public class ResetPasswordViewModel
