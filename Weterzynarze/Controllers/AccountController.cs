@@ -154,6 +154,10 @@ namespace Weterzynarze.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+                if(model.Rodo == false)
+                {
+                    return View(model);
+                }
                 if (ModelState.IsValid)
                 {
                     
@@ -173,7 +177,9 @@ namespace Weterzynarze.Controllers
                         WetContext db = new WetContext();
                         db.Profiles.Add(userProfile);
                         db.SaveChanges();
-                        SendMail(User.Identity.Name, "Dziękujemy za założenie konta na naszym portalu", " Powiadomienie z gabinetu Gab wet");
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        SendMail(user.Email, "Dziękujemy za założenie konta na naszym portalu aby potwierdzić email wejdź w ten link " + callbackUrl , " Powiadomienie z gabinetu Gab wet");
 
 
 
