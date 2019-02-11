@@ -177,9 +177,14 @@ namespace Weterzynarze.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visit visit = db.Visits.Find(id);
+            double doWiz = visit.VisitDate.Date.Subtract(DateTime.Now.Date).TotalDays;
             if (visit == null)
             {
                 return HttpNotFound();
+            }
+            if (doWiz < 3)
+            {
+                return RedirectToAction("MyVisits","Visits");
             }
             return View(visit);
         }
