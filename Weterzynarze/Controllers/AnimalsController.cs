@@ -133,9 +133,19 @@ namespace Weterzynarze.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                HttpPostedFileBase file = Request.Files["Obrazki"];
+                if (file != null && file.ContentLength > 0)
+                {
+
+                    animal.Picture = file.FileName;
+                    string path = (HttpContext.Server.MapPath("~/Picture/") + animal.Picture);
+                    file.SaveAs(path);
+                }
+
                 db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Animals");
             }
             return View(animal);
         }

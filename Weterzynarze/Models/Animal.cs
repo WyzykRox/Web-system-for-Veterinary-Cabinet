@@ -18,6 +18,7 @@ namespace Weterzynarze.ViewModels
         public string DistinuishingMarks { get; set; }
         public int ChipId { get; set; }
         public string Picture { get; set; }
+        [DataType(DataType.DateTime)]
         public DateTime Created { get; set; }
 
         public virtual Profile Owner { get; set; }
