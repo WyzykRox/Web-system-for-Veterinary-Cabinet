@@ -94,7 +94,7 @@ namespace Weterzynarze.Controllers
             int spr = Enumerable.Count(ViewBag.AnimalID);
             if (spr == 0)
             {
-                return RedirectToAction("Create", "Animalswwww");
+                return RedirectToAction("Create", "Animals");
             }
             return View();
         }
