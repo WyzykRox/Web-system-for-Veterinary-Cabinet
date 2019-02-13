@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    string [] imgExtensions = ViewBag.ImgExtensions;
 }
 
 <h2>Details</h2>
@@ -40,6 +41,36 @@
 
         <dd>
             @Html.DisplayFor(model => model.Treatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usluga.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usluga.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilesSrcList)
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var file in Model.FilesSrcList)
+                {
+                    <li>
+                        @if (imgExtensions.Contains(Path.GetExtension(file.Name)))
+                        {
+                            <a href='~/UploadedFiles/HealthCard/@file.Src'><img style='width: 250px; height: 250px;' src='~/UploadedFiles/HealthCard/@file.Src' /></a>
+                        }
+                        else
+                        {
+                            <a href='~/UploadedFiles/HealthCard/@file.Src'>@file.Name</a>
+                        }
+                    </li>
+                }
+            </ul>
         </dd>
 
     </dl>

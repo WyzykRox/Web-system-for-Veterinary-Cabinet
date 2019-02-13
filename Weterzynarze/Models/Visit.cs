@@ -12,8 +12,11 @@ namespace Weterzynarze.Models
         [Key]
         public int ID { get; set; }
         [Required]
+        [Display(Name = "Data Wizyt")]
         public DateTime VisitDate { get; set; }
+        [Display(Name = "Opis dolegliwości")]
         public string Description { get; set; }
+        [Display(Name = "wybierz ziwerzaka")]
         public int AnimalID { get; set; }
 
 

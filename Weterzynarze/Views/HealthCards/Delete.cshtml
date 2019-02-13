@@ -42,7 +42,13 @@
         <dd>
             @Html.DisplayFor(model => model.Treatment)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.usluga.Name)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.usluga.Name)
+        </dd>
     </dl>
 
     @using (Html.BeginForm()) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -35,13 +36,13 @@ namespace Weterzynarze.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ImgExtensions = ImageExtensions;
             return View(healthCard);
         }
 
         // GET: HealthCards/Create
         public ActionResult Create(int Animal_ID, DateTime date)
         {
-          
             ViewBag.Date1 = new SelectList(db.Visits.Where(_ => _.VisitDate == date), "VisitDate", "VisitDate");
             
             ViewBag.Description = new SelectList( db.Visits.Where(_ => _.VisitDate == date), "Description", "Description");
@@ -55,7 +56,7 @@ namespace Weterzynarze.Controllers
             };
 
             ViewBag.AnimalID = lists;
-
+            ViewBag.service = new SelectList(db.Services, "ID", "Name");
             return View();
         }
 
@@ -64,19 +65,49 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID")] HealthCard healthCard)
+        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,servicesID,FilesSrcList")] HealthCard healthCard)
         {
             
      
             if (ModelState.IsValid)
             {
-            var animals = db.Animals.Where(x => x.ID == healthCard.AnimalID).First();
-              healthCard.Animal = animals;
+                var animals = db.Animals.Where(x => x.ID == healthCard.AnimalID).First();
+                healthCard.Animal = animals;
+                healthCard.FilesSrcList = new List<FilesHealthCard>();
+                //pobierze liste plikow
+
+
+
+                // HttpPostedFileBase file = Request.Files["Obrazki"];
+                var files = Enumerable.Range(0, Request.Files.Count)
+                        .Select(i => Request.Files[i]);
+
+                foreach (var file in files )
+                {
+                    
+                    //Checking file is available to save.  
+                    if (file != null)
+                    {
+                        var InputFileName = Path.GetFileName(file.FileName);
+                        //stworzy folder o nazwie id karty
+                        var Folder = Path.Combine(Server.MapPath($"~/UploadedFiles/HealthCard/"));
+                        if (!Directory.Exists(Folder))
+                            Directory.CreateDirectory(Folder);
+                        var File = $"{ Guid.NewGuid() }_{ InputFileName}";
+                        //doda kazdy plik z listy
+                        file.SaveAs(Folder + File);
+                        //doda nazwe pliku z rozszerzeniem do listy FileSrcList
+                        healthCard.FilesSrcList.Add(new FilesHealthCard() { Src = (File), KartaID = healthCard.ID, Name = file.FileName });
+                        //assigning file uploaded status to ViewBag for showing message to user.  
+                        ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
+                    }
+
+                }
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
                 return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime });
             }
-
+            ViewBag.service = new SelectList(db.Services, "ID", "Name");
             ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");
             return View(healthCard);
         }
@@ -89,6 +120,7 @@ namespace Weterzynarze.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             HealthCard healthCard = db.HealthCards.Find(id);
+            ViewBag.service = new SelectList(db.Services, "ID", "Name");
             if (healthCard == null)
             {
                 return HttpNotFound();
@@ -102,7 +134,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID")] HealthCard healthCard)
+        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,servicesID")] HealthCard healthCard)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +143,7 @@ namespace Weterzynarze.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-          
+            ViewBag.service = new SelectList(db.Services, "ID", "Name");
             return View(healthCard);
         }
 
@@ -149,5 +181,13 @@ namespace Weterzynarze.Controllers
             }
             base.Dispose(disposing);
         }
+
+        private string[] ImageExtensions { get; } = {
+            ".jpg",
+            ".img",
+            ".jpeg",
+            ".png",
+            ".gif"
+        };
     }
 }

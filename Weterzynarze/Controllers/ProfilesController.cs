@@ -109,7 +109,7 @@ namespace Weterzynarze.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include = "ID,Email,FirstName,LastName,Created")] Profile profile)
+        public ActionResult Create([Bind(Include = "ID,Email,FirstName,LastName,PhoneNumber,created")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -143,13 +143,13 @@ namespace Weterzynarze.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin,User")]
-        public ActionResult Edit([Bind(Include = "ID,Email,FirstName,LastName,Created")] Profile profile)
+        public ActionResult Edit([Bind(Include = "ID,Email,FirstName,LastName,PhoneNumber,created")] Profile profile)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(profile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(profile);
         }

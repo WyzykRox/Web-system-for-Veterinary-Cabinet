@@ -39,6 +39,7 @@ namespace Weterzynarze.Controllers
             smtpClient.Send(message);
         }
 
+
         // GET: ShowAll
         public ActionResult ShowAll()
         {
@@ -48,11 +49,11 @@ namespace Weterzynarze.Controllers
         // GET: Animals
         public ActionResult Index()
         {
-           
+
 
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
             var user = userManager.FindByName(User.Identity.Name);
-            return View(db.Animals.Where(_ => _.Owner.Email == user.Email));
+            return View(db.Animals.Where(_ => _.Owner.Email == user.Email).ToList());
 
         }
 
@@ -74,6 +75,8 @@ namespace Weterzynarze.Controllers
         // GET: Animals/Create
         public ActionResult Create()
         {
+            ViewBag.Race = new SelectList(db.Races, "ID", "Name");
+
             return View();
         }
 
@@ -82,10 +85,8 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Colour,Sex,Breed,DistinuishingMarks,ChipId,Picture,Created")] Animal animal)
+        public ActionResult Create([Bind(Include = "ID,Name,Colour,Sex,DistinuishingMarks,RaceID,ChipId,Picture,Created,grafting")] Animal animal)
         {
-
-
             if (ModelState.IsValid)
             {
 
@@ -97,7 +98,8 @@ namespace Weterzynarze.Controllers
                     string path = (HttpContext.Server.MapPath("~/Picture/") + animal.Picture);
                     file.SaveAs(path);
                 }
-
+                var race = db.Races.Find(animal.RaceID);
+                animal.Rasa = race;
                 var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
                 var user = userManager.FindByName(User.Identity.Name);
                 animal.Owner = db.Profiles.SingleOrDefault(_ => _.Email == user.Email);
@@ -105,17 +107,19 @@ namespace Weterzynarze.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Race = new SelectList(db.Races, "ID", "Name");
             return View(animal);
         }
 
         // GET: Animals/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Race = new SelectList(db.Races, "ID", "Name");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             Animal animal = db.Animals.Find(id);
             if (animal == null)
             {
@@ -129,11 +133,10 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Colour,Sex,Breed,DistinuishingMarks,ChipId,Picture,Created")] Animal animal)
+        public ActionResult Edit([Bind(Include = "ID,Name,Colour,Sex,DistinuishingMarks,RaceID,ChipId,Picture,Created,grafting")] Animal animal)
         {
             if (ModelState.IsValid)
             {
-
                 HttpPostedFileBase file = Request.Files["Obrazki"];
                 if (file != null && file.ContentLength > 0)
                 {
@@ -142,11 +145,13 @@ namespace Weterzynarze.Controllers
                     string path = (HttpContext.Server.MapPath("~/Picture/") + animal.Picture);
                     file.SaveAs(path);
                 }
-
+                var race = db.Races.Find(animal.RaceID);
+                animal.Rasa = race;
                 db.Entry(animal).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index","Animals");
+                return RedirectToAction("Index", "Animals");
             }
+            ViewBag.Race = new SelectList(db.Races, "ID", "Name");
             return View(animal);
         }
 
@@ -184,8 +189,5 @@ namespace Weterzynarze.Controllers
             }
             base.Dispose(disposing);
         }
-
-        
-
     }
 }

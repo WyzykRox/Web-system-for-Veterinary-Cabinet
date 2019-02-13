@@ -19,7 +19,6 @@ namespace Weterzynarze.DAL
 
             roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("User"));
-            roleManager.Create(new IdentityRole("Moderator"));
 
            
 
@@ -31,7 +30,7 @@ namespace Weterzynarze.DAL
             var user2 = new ApplicationUser { UserName = "grazyna@grazyna.com" };
             string pass2 = "grazyna";
             userManager.Create(user2, pass2);
-            userManager.AddToRole(user.Id, "Admin");
+            userManager.AddToRole(user.Id, "User");
 
             var profiles = new List<Profile>
             {

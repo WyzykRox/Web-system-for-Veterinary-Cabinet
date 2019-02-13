@@ -206,37 +206,74 @@
     <Compile Include="Controllers\HealthCardsController.cs" />
     <Compile Include="Controllers\HistryVisitsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
+    <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="DAL\DataInitializer.cs" />
     <Compile Include="DAL\WetContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902020940157_Initial.cs" />
-    <Compile Include="Migrations\201902020940157_Initial.Designer.cs">
-      <DependentUpon>201902020940157_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201902121010240_Initial.cs" />
+    <Compile Include="Migrations\201902121010240_Initial.Designer.cs">
+      <DependentUpon>201902121010240_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902060918299_base2.cs" />
-    <Compile Include="Migrations\201902060918299_base2.Designer.cs">
-      <DependentUpon>201902060918299_base2.cs</DependentUpon>
+    <Compile Include="Migrations\201902121024276_Base1.cs" />
+    <Compile Include="Migrations\201902121024276_Base1.Designer.cs">
+      <DependentUpon>201902121024276_Base1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902071524303_base3.cs" />
-    <Compile Include="Migrations\201902071524303_base3.Designer.cs">
-      <DependentUpon>201902071524303_base3.cs</DependentUpon>
+    <Compile Include="Migrations\201902121037292_Base11.cs" />
+    <Compile Include="Migrations\201902121037292_Base11.Designer.cs">
+      <DependentUpon>201902121037292_Base11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902111010284_base31.cs" />
-    <Compile Include="Migrations\201902111010284_base31.Designer.cs">
-      <DependentUpon>201902111010284_base31.cs</DependentUpon>
+    <Compile Include="Migrations\201902121109112_Base12.cs" />
+    <Compile Include="Migrations\201902121109112_Base12.Designer.cs">
+      <DependentUpon>201902121109112_Base12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121133010_Base13.cs" />
+    <Compile Include="Migrations\201902121133010_Base13.Designer.cs">
+      <DependentUpon>201902121133010_Base13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121136272_Base14.cs" />
+    <Compile Include="Migrations\201902121136272_Base14.Designer.cs">
+      <DependentUpon>201902121136272_Base14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121149276_Base15.cs" />
+    <Compile Include="Migrations\201902121149276_Base15.Designer.cs">
+      <DependentUpon>201902121149276_Base15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121320262_Base16.cs" />
+    <Compile Include="Migrations\201902121320262_Base16.Designer.cs">
+      <DependentUpon>201902121320262_Base16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121456038_Base17.cs" />
+    <Compile Include="Migrations\201902121456038_Base17.Designer.cs">
+      <DependentUpon>201902121456038_Base17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121825072_base18.cs" />
+    <Compile Include="Migrations\201902121825072_base18.Designer.cs">
+      <DependentUpon>201902121825072_base18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121909035_base19.cs" />
+    <Compile Include="Migrations\201902121909035_base19.Designer.cs">
+      <DependentUpon>201902121909035_base19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902121921267_base20.cs" />
+    <Compile Include="Migrations\201902121921267_base20.Designer.cs">
+      <DependentUpon>201902121921267_base20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902122015205_base21.cs" />
+    <Compile Include="Migrations\201902122015205_base21.Designer.cs">
+      <DependentUpon>201902122015205_base21.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\FilesHealthCard.cs" />
     <Compile Include="Models\HealthCard.cs" />
     <Compile Include="Models\HistryVisit.cs" />
     <Compile Include="Models\Race.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Visit.cs" />
-    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Animal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -429,10 +466,16 @@
     <Content Include="Views\Visits\MyVisits.cshtml" />
     <Content Include="Views\Shared\_User.cshtml" />
     <Content Include="Views\Visits\ToDayvisits.cshtml" />
+    <Content Include="Views\Races\Create.cshtml" />
+    <Content Include="Views\Races\Delete.cshtml" />
+    <Content Include="Views\Races\Details.cshtml" />
+    <Content Include="Views\Races\Edit.cshtml" />
+    <Content Include="Views\Races\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Picture\" />
+    <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -448,17 +491,44 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902020940157_Initial.resx">
-      <DependentUpon>201902020940157_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902121010240_Initial.resx">
+      <DependentUpon>201902121010240_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902060918299_base2.resx">
-      <DependentUpon>201902060918299_base2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902121024276_Base1.resx">
+      <DependentUpon>201902121024276_Base1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071524303_base3.resx">
-      <DependentUpon>201902071524303_base3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902121037292_Base11.resx">
+      <DependentUpon>201902121037292_Base11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902111010284_base31.resx">
-      <DependentUpon>201902111010284_base31.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902121109112_Base12.resx">
+      <DependentUpon>201902121109112_Base12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121133010_Base13.resx">
+      <DependentUpon>201902121133010_Base13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121136272_Base14.resx">
+      <DependentUpon>201902121136272_Base14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121149276_Base15.resx">
+      <DependentUpon>201902121149276_Base15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121320262_Base16.resx">
+      <DependentUpon>201902121320262_Base16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121456038_Base17.resx">
+      <DependentUpon>201902121456038_Base17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121825072_base18.resx">
+      <DependentUpon>201902121825072_base18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121909035_base19.resx">
+      <DependentUpon>201902121909035_base19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902121921267_base20.resx">
+      <DependentUpon>201902121921267_base20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902122015205_base21.resx">
+      <DependentUpon>201902122015205_base21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

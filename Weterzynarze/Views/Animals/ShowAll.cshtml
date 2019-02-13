@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Sex)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Breed)
+            @Html.DisplayNameFor(model => model.Rasa.Name);
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DistinuishingMarks)
@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Sex)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Breed)
+                @Html.DisplayFor(modelItem => item.Rasa.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DistinuishingMarks)
