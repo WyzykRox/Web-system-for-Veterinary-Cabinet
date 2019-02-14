@@ -7,13 +7,13 @@ namespace Weterzynarze.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class base18 : IMigrationMetadata
+    public sealed partial class Base18 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(base18));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Base18));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902121825072_base18"; }
+            get { return "201902141415174_Base18"; }
         }
         
         string IMigrationMetadata.Source

@@ -55,7 +55,8 @@ namespace Weterzynarze.Controllers
             {
                 db.HistoryVisits.Add(histryVisit);
                 db.SaveChanges();
-                var Index = db.Visits.Where(_ => _.VisitDate == histryVisit.VisitDate).Select(_ => _.ID).FirstOrDefault();
+                int Index = db.Visits.Where(_ => _.VisitDate.CompareTo(histryVisit.VisitDate) == 0).Select(_ => _.ID).FirstOrDefault();
+               
                 return RedirectToAction("Delete", "Visits", new { id = Index });
             }
 

@@ -20,7 +20,7 @@ namespace Weterzynarze.Models
         [Display(Name = "nazwa zwierzaka")]
         public int AnimalID { get; set; }
         [Display(Name = "Usługa")]
-        public int servicesID { get; set; }
+        public int uslugaID { get; set; }
 
         public virtual Animal Animal { get; set; }
       

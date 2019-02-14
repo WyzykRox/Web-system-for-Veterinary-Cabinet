@@ -11,112 +11,107 @@ using Weterzynarze.Models;
 
 namespace Weterzynarze.Controllers
 {
-    public class RacesController : Controller
+    public class ServicesController : Controller
     {
         private WetContext db = new WetContext();
 
-        // GET: Races
+        // GET: Services
         public ActionResult Index()
         {
-            
-            return View(db.Races.ToList());
+            return View(db.Services.ToList());
         }
 
-        // GET: Races/Details/5
+        // GET: Services/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Race race = db.Races.Find(id);
-            if (race == null)
+            Service service = db.Services.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-            return View(race);
+            return View(service);
         }
 
-        // GET: Races/Create
+        // GET: Services/Create
         public ActionResult Create()
         {
-         
             return View();
         }
 
-        // POST: Races/Create
+        // POST: Services/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Race race)
+        public ActionResult Create([Bind(Include = "ID,Name,Price")] Service service)
         {
             if (ModelState.IsValid)
             {
-                db.Races.Add(race);
+                db.Services.Add(service);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-          
-            return View(race);
+            return View(service);
         }
 
-        // GET: Races/Edit/5
+        // GET: Services/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Race race = db.Races.Find(id);
-            if (race == null)
+            Service service = db.Services.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-          
-            return View(race);
+            return View(service);
         }
 
-        // POST: Races/Edit/5
+        // POST: Services/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Race race)
+        public ActionResult Edit([Bind(Include = "ID,Name,Price")] Service service)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(race).State = EntityState.Modified;
+                db.Entry(service).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-          
-            return View(race);
+            return View(service);
         }
 
-        // GET: Races/Delete/5
+        // GET: Services/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Race race = db.Races.Find(id);
-            if (race == null)
+            Service service = db.Services.Find(id);
+            if (service == null)
             {
                 return HttpNotFound();
             }
-            return View(race);
+            return View(service);
         }
 
-        // POST: Races/Delete/5
+        // POST: Services/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Race race = db.Races.Find(id);
-            db.Races.Remove(race);
+            Service service = db.Services.Find(id);
+            db.Services.Remove(service);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

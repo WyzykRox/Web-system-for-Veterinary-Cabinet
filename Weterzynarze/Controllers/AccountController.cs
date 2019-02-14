@@ -168,7 +168,7 @@ namespace Weterzynarze.Controllers
 
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
-                    userManager.AddToRole(user.Id, "User");
+                   // userManager.AddToRole(user.Id, "User");
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -177,6 +177,7 @@ namespace Weterzynarze.Controllers
                         WetContext db = new WetContext();
                         db.Profiles.Add(userProfile);
                         db.SaveChanges();
+                        userManager.AddToRole(user.Id, "User");
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         SendMail(user.Email, "Dziękujemy za założenie konta na naszym portalu aby potwierdzić email wejdź w ten link " + callbackUrl , " Powiadomienie z gabinetu Gab wet");

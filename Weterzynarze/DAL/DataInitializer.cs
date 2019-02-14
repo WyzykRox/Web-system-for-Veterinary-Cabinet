@@ -27,6 +27,7 @@ namespace Weterzynarze.DAL
             string pass = "janusz";
             userManager.Create(user, pass);
             userManager.AddToRole(user.Id, "Admin");
+            userManager.AddToRole(user.Id, "User");
 
             var user2 = new ApplicationUser { UserName = "grazyna@grazyna.com" };
             string pass2 = "grazyna";

@@ -182,10 +182,7 @@ namespace Weterzynarze.Controllers
             {
                 return HttpNotFound();
             }
-            if (doWiz < 3)
-            {
-                return RedirectToAction("MyVisits","Visits");
-            }
+          
             return View(visit);
         }
 

@@ -36,6 +36,7 @@ namespace Weterzynarze.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.service = new SelectList(db.Services, "ID", "Name");
             ViewBag.ImgExtensions = ImageExtensions;
             return View(healthCard);
         }
@@ -55,6 +56,7 @@ namespace Weterzynarze.Controllers
                 data
             };
 
+
             ViewBag.AnimalID = lists;
             ViewBag.service = new SelectList(db.Services, "ID", "Name");
             return View();
@@ -65,7 +67,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,servicesID,FilesSrcList")] HealthCard healthCard)
+        public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,uslugaID,FilesSrcList")] HealthCard healthCard)
         {
             
      
@@ -103,6 +105,7 @@ namespace Weterzynarze.Controllers
                     }
 
                 }
+                
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
                 return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime });
@@ -134,7 +137,7 @@ namespace Weterzynarze.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,servicesID")] HealthCard healthCard)
+        public ActionResult Edit([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,uslugaID")] HealthCard healthCard)
         {
             if (ModelState.IsValid)
             {

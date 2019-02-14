@@ -56,12 +56,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -209,6 +218,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RacesController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
     <Compile Include="DAL\DataInitializer.cs" />
     <Compile Include="DAL\WetContext.cs" />
@@ -251,10 +261,6 @@
     <Compile Include="Migrations\201902121456038_Base17.Designer.cs">
       <DependentUpon>201902121456038_Base17.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902121825072_base18.cs" />
-    <Compile Include="Migrations\201902121825072_base18.Designer.cs">
-      <DependentUpon>201902121825072_base18.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201902121909035_base19.cs" />
     <Compile Include="Migrations\201902121909035_base19.Designer.cs">
       <DependentUpon>201902121909035_base19.cs</DependentUpon>
@@ -266,6 +272,10 @@
     <Compile Include="Migrations\201902122015205_base21.cs" />
     <Compile Include="Migrations\201902122015205_base21.Designer.cs">
       <DependentUpon>201902122015205_base21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902141415174_Base18.cs" />
+    <Compile Include="Migrations\201902141415174_Base18.Designer.cs">
+      <DependentUpon>201902141415174_Base18.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FilesHealthCard.cs" />
@@ -471,6 +481,11 @@
     <Content Include="Views\Races\Details.cshtml" />
     <Content Include="Views\Races\Edit.cshtml" />
     <Content Include="Views\Races\Index.cshtml" />
+    <Content Include="Views\Services\Create.cshtml" />
+    <Content Include="Views\Services\Delete.cshtml" />
+    <Content Include="Views\Services\Details.cshtml" />
+    <Content Include="Views\Services\Edit.cshtml" />
+    <Content Include="Views\Services\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -518,9 +533,6 @@
     <EmbeddedResource Include="Migrations\201902121456038_Base17.resx">
       <DependentUpon>201902121456038_Base17.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121825072_base18.resx">
-      <DependentUpon>201902121825072_base18.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902121909035_base19.resx">
       <DependentUpon>201902121909035_base19.cs</DependentUpon>
     </EmbeddedResource>
@@ -529,6 +541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902122015205_base21.resx">
       <DependentUpon>201902122015205_base21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141415174_Base18.resx">
+      <DependentUpon>201902141415174_Base18.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
