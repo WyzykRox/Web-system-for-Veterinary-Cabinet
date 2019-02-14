@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using Weterzynarze.Models;
 using Weterzynarze.ViewModels;
 
 namespace Weterzynarze.DAL
@@ -51,6 +52,62 @@ namespace Weterzynarze.DAL
             profiles.ForEach(p => context.Profiles.Add(p));
             context.SaveChanges();
 
+            var race = new List<Race>
+            {
+                new Race
+                {
+                    Name = "Pers",
+                },
+                new Race
+                {
+                    Name = "Husky",
+                },
+                new Race
+                {
+                    Name = "Bulldog",
+                },
+                new Race
+                {
+                    Name = "Papuga",
+                },
+                new Race
+                {
+                    Name = "Tarantula",
+                },
+                new Race
+                {
+                    Name = "goldenretriver",
+                }
+            };
+
+            race.ForEach(p => context.Races.Add(p));
+            context.SaveChanges();
+
+            var service = new List<Service>
+            {
+                new Service
+                {
+                    Name = "Odrobaczanie",
+                    Price = 40,
+                },
+                new Service
+                {
+                    Name = "Szczepienie",
+                    Price = 40,
+                },
+                new Service
+                {
+                    Name = "Diagnozowanie choroby",
+                    Price = 40,
+                },
+                new Service
+                {
+                    Name = "strzyżenie",
+                    Price = 40,
+                }
+            };
+            service.ForEach(p => context.Services.Add(p));
+            context.SaveChanges();
 
         }
     }
