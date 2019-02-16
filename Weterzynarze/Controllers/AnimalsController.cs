@@ -76,7 +76,7 @@ namespace Weterzynarze.Controllers
         public ActionResult Create()
         {
             ViewBag.Race = new SelectList(db.Races, "ID", "Name");
-
+            ViewBag.plec = new SelectList(plec, plec);
             return View();
         }
 
@@ -114,6 +114,7 @@ namespace Weterzynarze.Controllers
         // GET: Animals/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.plec = new SelectList(plec,plec);
             ViewBag.Race = new SelectList(db.Races, "ID", "Name");
             if (id == null)
             {
@@ -189,5 +190,10 @@ namespace Weterzynarze.Controllers
             }
             base.Dispose(disposing);
         }
+        private string[] plec { get; } = {
+            "samiec",
+            "samica",
+            "bezpłuciowiec"
+        };
     }
 }
