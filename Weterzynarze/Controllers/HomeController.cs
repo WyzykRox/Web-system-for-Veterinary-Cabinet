@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Weterzynarze.DAL;
+using Weterzynarze.Models;
+using Weterzynarze.ViewModels;
+
 
 namespace Weterzynarze.Controllers
 {
     public class HomeController : Controller
     {
+        private WetContext db = new WetContext();
         public ActionResult Index()
         {
-            return View();
+            return View(db.Services.ToList());
         }
 
         public ActionResult About()

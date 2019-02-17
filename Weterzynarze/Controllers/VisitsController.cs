@@ -15,6 +15,7 @@ using Weterzynarze.Models;
 
 namespace Weterzynarze.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class VisitsController : Controller
     {
 

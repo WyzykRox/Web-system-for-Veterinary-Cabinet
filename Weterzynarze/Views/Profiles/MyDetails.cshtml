@@ -44,7 +44,7 @@
 
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
 </p>
 <br />
 <hr />
@@ -96,6 +96,7 @@
     <th>
         @Html.DisplayNameFor(model => model.Zapiswiz.FirstOrDefault().Description)
     </th>
+    <th></th>
     @foreach (var item in Model.Zapiswiz)
     {
 
@@ -110,6 +111,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td>
+                @Html.ActionLink("Zmień termin", "Edit","Visits", new { id = Model.ID }, new { @class = "btn btn-warning" })
+            </td>
         </tr>
 
 
@@ -118,6 +122,5 @@
     }
 </table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) 
-    @Html.ActionLink("Back to Home", "Index", "Home")
+    @Html.ActionLink("Back to Home", "Index", "Home", new { @class = "btn btn-primary" })
 </p>

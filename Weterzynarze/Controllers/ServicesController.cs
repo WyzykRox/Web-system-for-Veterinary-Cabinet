@@ -11,6 +11,7 @@ using Weterzynarze.Models;
 
 namespace Weterzynarze.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServicesController : Controller
     {
         private WetContext db = new WetContext();

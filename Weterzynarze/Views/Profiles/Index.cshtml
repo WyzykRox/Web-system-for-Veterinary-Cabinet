@@ -48,7 +48,7 @@
             @Html.DisplayNameFor(model => model.FirstOrDefault().Created)
 
         </th>
-        <th>Options</th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -72,9 +72,9 @@
 
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, new { @class = "btn btn-info" })
+
         </td>
     </tr>
     }

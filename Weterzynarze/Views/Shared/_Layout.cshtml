@@ -28,11 +28,30 @@
                     @Html.Partial("_User")
                     @if (this.User.IsInRole("Admin"))
                     {
-                    <li>@Html.ActionLink("Dzisiejsze wizyty", "ToDayvisits", "Visits")</li>
+                        <li>@Html.ActionLink("Dzisiejsze wizyty", "ToDayvisits", "Visits")</li>
+
+
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Admin Menu
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("usługi", "Index", "Services")</li>
+                                <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
+                                <li>@Html.ActionLink("Wszystkie wizyty historyczne", "Index", "HistryVisits")</li>
+                                <li>@Html.ActionLink("Wszystkie wizyty", "Index", "Visits")</li>
+                                <li>@Html.ActionLink("Wszystkie karty zdrowia", "Index", "healthCards")</li>
+                                <li>@Html.ActionLink("Wszystkie zwierzęta", "showAll", "Animals")</li>
+                                <li>@Html.ActionLink("Profile", "Index", "Profiles")</li>
+                            </ul>
+                        </li>
+
                     }
+
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                    @Html.Partial("_LoginPartial")
+                </div>
         </div>
     </div>
     <div class="container body-content">

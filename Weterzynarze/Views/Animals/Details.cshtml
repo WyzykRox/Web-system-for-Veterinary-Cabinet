@@ -76,7 +76,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edytuj dane zwierzaka", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Edytuj dane zwierzaka", "Edit", new { id = Model.ID }, new { @class = "btn btn-warning" })
 </p>
 <br />
 <hr />
@@ -106,7 +106,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Szczegóły", "Details", "HealthCards", new { id = item.ID}, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Szczegóły", "Details", "HealthCards", new { id = item.ID}, new { @class = "btn btn-info" })
             </td>
         </tr>
 

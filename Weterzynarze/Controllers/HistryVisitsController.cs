@@ -11,6 +11,7 @@ using Weterzynarze.Models;
 
 namespace Weterzynarze.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class HistryVisitsController : Controller
     {
         private WetContext db = new WetContext();
@@ -38,12 +39,12 @@ namespace Weterzynarze.Controllers
         }
 
         // GET: HistryVisits/Create
-        public ActionResult Create(DateTime Date)
+        public ActionResult Create(DateTime Date, int AnimalID)
         {
 
             var visit = db.Visits.Where(_ => _.VisitDate == Date).First();
             HistryVisit histryVisit = new HistryVisit { Zwierzak = visit.Zwierzak, VisitDate = visit.VisitDate, User = visit.User, Description = visit.Description, AnimalID = visit.AnimalID };
-            ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");
+            ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.ID == AnimalID), "ID", "Name");
             return View(histryVisit);
         }
 
