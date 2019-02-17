@@ -26,7 +26,7 @@ namespace Weterzynarze.ViewModels
         public virtual List<Visit> Zapiswiz { get; set; }
         public DateTime Created { get; } = DateTime.Now;
         public virtual List<Animal> Pets { get; set; }
-      
+        public virtual List<News> post { get; set; }
 
         public Profile()
         {

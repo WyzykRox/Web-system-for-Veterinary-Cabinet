@@ -216,6 +216,7 @@
     <Compile Include="Controllers\HistryVisitsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\RacesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -261,10 +262,6 @@
     <Compile Include="Migrations\201902121456038_Base17.Designer.cs">
       <DependentUpon>201902121456038_Base17.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902121909035_base19.cs" />
-    <Compile Include="Migrations\201902121909035_base19.Designer.cs">
-      <DependentUpon>201902121909035_base19.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201902121921267_base20.cs" />
     <Compile Include="Migrations\201902121921267_base20.Designer.cs">
       <DependentUpon>201902121921267_base20.cs</DependentUpon>
@@ -277,10 +274,15 @@
     <Compile Include="Migrations\201902141415174_Base18.Designer.cs">
       <DependentUpon>201902141415174_Base18.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902171923313_Base19.cs" />
+    <Compile Include="Migrations\201902171923313_Base19.Designer.cs">
+      <DependentUpon>201902171923313_Base19.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\FilesHealthCard.cs" />
     <Compile Include="Models\HealthCard.cs" />
     <Compile Include="Models\HistryVisit.cs" />
+    <Compile Include="Models\News.cs" />
     <Compile Include="Models\Race.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Visit.cs" />
@@ -481,6 +483,11 @@
     <Content Include="Views\Services\Details.cshtml" />
     <Content Include="Views\Services\Edit.cshtml" />
     <Content Include="Views\Services\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -527,9 +534,6 @@
     <EmbeddedResource Include="Migrations\201902121456038_Base17.resx">
       <DependentUpon>201902121456038_Base17.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902121909035_base19.resx">
-      <DependentUpon>201902121909035_base19.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902121921267_base20.resx">
       <DependentUpon>201902121921267_base20.cs</DependentUpon>
     </EmbeddedResource>
@@ -538,6 +542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902141415174_Base18.resx">
       <DependentUpon>201902141415174_Base18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171923313_Base19.resx">
+      <DependentUpon>201902171923313_Base19.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
