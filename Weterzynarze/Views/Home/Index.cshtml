@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Weterzynarze.Models.Service>
-
+﻿@model IEnumerable<Weterzynarze.Models.News>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -39,14 +38,34 @@
         <h2>Usługi</h2>
         <p>
             Prowadzimy podstawowe usługu takie jak:<br />
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.Service)
             {
-                @Html.DisplayFor(modelItem => item.Name)<br />
+                @item.Name<br />
             }
             i inne.
         </p>
 
     </div>
 
+    
+    <div align="center">
+        
+        <h1 class="text-center">Tablica Ogłoszeń</h1>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <div class="col-md-1 visible-lg-block"></div>
+            <div class="col-md-4" style="border:2px solid Black" align-left:5px>
+                <h2>@item.Title</h2>
+                <article>
+                    <br />
+                    @item.Synopsis
+                </article>
 
-</div>
+            </div>
+            <div class="col-md-1"></div>
+        }
+
+    </div>
+
+ </div>

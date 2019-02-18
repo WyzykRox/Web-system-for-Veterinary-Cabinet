@@ -15,7 +15,9 @@ namespace Weterzynarze.Controllers
         private WetContext db = new WetContext();
         public ActionResult Index()
         {
-            return View(db.Services.ToList());
+            List<Service> list = db.Services.ToList();
+            ViewBag.Service = list;
+            return View(db.News.ToList());
         }
 
         public ActionResult About()
