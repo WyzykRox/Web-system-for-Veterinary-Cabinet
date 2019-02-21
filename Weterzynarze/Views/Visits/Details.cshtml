@@ -38,7 +38,6 @@
 </div>
 <p>
 
-    @Html.ActionLink("Create Health Card", "Create", "HealthCards", new { Animal_ID = Model.AnimalID, date = Model.VisitDate}, null)
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Zakończ wizytę", "Create", "HealthCards", new { Animal_ID = Model.AnimalID, date = Model.VisitDate}, new { @class = "btn btn-success" }) |
+    @Html.ActionLink("wróc do wizyt", "ToDayvisits","Visits", new { @class = "btn btn-primary" })
 </p>

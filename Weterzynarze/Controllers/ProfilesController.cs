@@ -15,6 +15,7 @@ using Weterzynarze.ViewModels;
 
 namespace Weterzynarze.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class ProfilesController : Controller
     {
         private WetContext db = new WetContext();

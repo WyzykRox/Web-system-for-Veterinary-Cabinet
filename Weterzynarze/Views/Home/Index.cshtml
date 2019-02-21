@@ -1,23 +1,25 @@
-﻿@{
+﻿@model IEnumerable<Weterzynarze.Models.News>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>Wet Klin</h1>
+    <h1> Gab Wet</h1>
     <p class="lead">
-        Witamy na naszej stronie. Apliakcja wspomagająca zarządzanie gabinetem weterynaryjnym. Oferuje założenie konta, dodania zwierzaka doa bazy,
-        umówienie go na wizyte czy też wyśiwetlenie karty zdrowia po wizycie
+        Witamy na naszym portalu!! Tutaj założysz sobie konto, dodasz swoich pupilów do konta umówisz ich na wizytę czy też przejrzysz kartę zdrowia z wizyty.
+        <br />
+        Portal jest nowy i rozwijany w razie jakiś problemów proszę dzwonić a wszystkim się szybko i sprawnie załatwimy.
     </p>
-    
+
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Gebinet</h2>
+        <h2>Gabinet</h2>
         <p>
-            Witamy w naszym gabinecie wszystko jest łatwo dostępne bez zbędnych okienek.
+            Witamy w naszym gabinecie wszystko jest łatwo dostępne bez zbędnych wszędzie wyskakujących okienek reklam.
         </p>
-        
+
     </div>
     <div class="col-md-4">
         <h2>Godziny otwarcia</h2>
@@ -30,16 +32,40 @@
             <br \>
             niedziela nieczynne
         </p>
-      
+
     </div>
     <div class="col-md-4">
         <h2>Usługi</h2>
         <p>
             Prowadzimy podstawowe usługu takie jak:<br />
-            odrobaczanie<br />
-            podstawowe szczepiewnia<br />
+            @foreach (var item in ViewBag.Service)
+            {
+                @item.Name<br />
+            }
             i inne.
         </p>
- 
+
     </div>
-</div>
+
+    
+    <div align="center" class="row-fluid">
+        
+        <h1 class="text-center">Tablica Ogłoszeń</h1>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <div class="col-md-1"></div>
+            <div class="col-md-4 h-50 d-inline-block" style="border:2px solid Black" align-left:5px>
+                <h2>@item.Title</h2>
+                <article>
+                    <br />
+                    @item.Synopsis
+                </article>
+
+            </div>
+            <div class="col-md-1"></div>
+        }
+
+    </div>
+
+ </div>

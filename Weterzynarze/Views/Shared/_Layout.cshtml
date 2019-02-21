@@ -28,11 +28,38 @@
                     @Html.Partial("_User")
                     @if (this.User.IsInRole("Admin"))
                     {
-                    <li>@Html.ActionLink("Dzisiejsze wizyty", "ToDayvisits", "Visits")</li>
+           
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Admin Menu
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("usługi", "Index", "Services")</li>
+                                <li>@Html.ActionLink("Rasy", "Index", "Races")</li>
+                                <li>@Html.ActionLink("Ogłoszenia", "Index", "News")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Eweterynarz
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Dzisiejsze wizyty", "ToDayvisits", "Visits")</li>
+                                <li>@Html.ActionLink("Wyświetl wizyty historyczne", "Index", "HistryVisits")</li>
+                                <li>@Html.ActionLink("Wyświetl Wszystkie wizyty", "Index", "Visits")</li>
+                                <li>@Html.ActionLink("Wyświetl karty zdrowia", "Index", "healthCards")</li>
+                                <li>@Html.ActionLink("Wyświetl zwierzęta", "showAll", "Animals")</li>
+                                <li>@Html.ActionLink("Wyświetl Profile", "Index", "Profiles")</li>
+                            </ul>
+                        </li>
+
                     }
+
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                    @Html.Partial("_LoginPartial")
+                </div>
         </div>
     </div>
     <div class="container body-content">

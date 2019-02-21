@@ -23,6 +23,7 @@ namespace Weterzynarze.DAL
         public DbSet<Visit> Visits { get; set; }
         public DbSet<HistryVisit> HistoryVisits { get; set; }
         public DbSet<FilesHealthCard> Files { get; set; }
+        public DbSet<News> News { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -13,6 +13,7 @@ using Weterzynarze.Models;
 
 namespace Weterzynarze.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class HealthCardsController : Controller
     {
         private WetContext db = new WetContext();
@@ -47,17 +48,10 @@ namespace Weterzynarze.Controllers
             ViewBag.Date1 = new SelectList(db.Visits.Where(_ => _.VisitDate == date), "VisitDate", "VisitDate");
             
             ViewBag.Description = new SelectList( db.Visits.Where(_ => _.VisitDate == date), "Description", "Description");
-            var item = db.Animals.Where(x => x.ID == Animal_ID ).First();
-
-            var data = new SelectList(db.Animals, "ID", "Name", item).First();
-
-            List<SelectListItem> lists = new List<SelectListItem>
-            {
-                data
-            };
+     
 
 
-            ViewBag.AnimalID = lists;
+            ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.ID == Animal_ID), "ID", "Name");
             ViewBag.service = new SelectList(db.Services, "ID", "Name");
             return View();
         }
@@ -108,7 +102,7 @@ namespace Weterzynarze.Controllers
                 
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
-                return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime });
+                return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime , AnimalID = healthCard.AnimalID });
             }
             ViewBag.service = new SelectList(db.Services, "ID", "Name");
             ViewBag.AnimalID = new SelectList(db.Animals, "ID", "Name");

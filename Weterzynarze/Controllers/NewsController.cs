@@ -12,107 +12,112 @@ using Weterzynarze.Models;
 namespace Weterzynarze.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class ServicesController : Controller
+    public class NewsController : Controller
     {
         private WetContext db = new WetContext();
 
-        // GET: Services
+        // GET: News
         public ActionResult Index()
         {
-            return View(db.Services.ToList());
+            var news = db.News.Include(n => n.User);
+            return View(news.ToList());
         }
 
-        // GET: Services/Details/5
+        // GET: News/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Services.Find(id);
-            if (service == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(service);
+            return View(news);
         }
 
-        // GET: Services/Create
+        // GET: News/Create
         public ActionResult Create()
         {
+            ViewBag.UserID = new SelectList(db.Profiles, "ID", "Email");
             return View();
         }
 
-        // POST: Services/Create
+        // POST: News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Price")] Service service)
+        public ActionResult Create([Bind(Include = "ID,Title,Synopsis,UserID")] News news)
         {
             if (ModelState.IsValid)
             {
-                db.Services.Add(service);
+                db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(service);
+            ViewBag.UserID = new SelectList(db.Profiles, "ID", "Email", news.UserID);
+            return View(news);
         }
 
-        // GET: Services/Edit/5
+        // GET: News/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Services.Find(id);
-            if (service == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(service);
+            ViewBag.UserID = new SelectList(db.Profiles, "ID", "Email", news.UserID);
+            return View(news);
         }
 
-        // POST: Services/Edit/5
+        // POST: News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Price")] Service service)
+        public ActionResult Edit([Bind(Include = "ID,Title,Synopsis,UserID")] News news)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(service).State = EntityState.Modified;
+                db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(service);
+            ViewBag.UserID = new SelectList(db.Profiles, "ID", "Email", news.UserID);
+            return View(news);
         }
 
-        // GET: Services/Delete/5
+        // GET: News/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Service service = db.Services.Find(id);
-            if (service == null)
+            News news = db.News.Find(id);
+            if (news == null)
             {
                 return HttpNotFound();
             }
-            return View(service);
+            return View(news);
         }
 
-        // POST: Services/Delete/5
+        // POST: News/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Service service = db.Services.Find(id);
-            db.Services.Remove(service);
+            News news = db.News.Find(id);
+            db.News.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
