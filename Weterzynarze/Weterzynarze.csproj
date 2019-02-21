@@ -409,6 +409,23 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="UploadedFiles\HealthCard\0eb154d6-d5a3-4d97-b4d4-e114a07c0ef0_46689650_742191059470847_2748702661971804160_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\181dd0ff-4e8f-4a11-bbe8-b1eed1ba2598_46792307_745879022435384_7154461813352955904_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\23944957-7027-433a-b4b0-7b43293e50e6_46689650_742191059470847_2748702661971804160_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\3b798431-0eb4-4b51-aa06-904a9011dc5d_46523530_742351869454766_9211014780289024000_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\476b7018-6bf3-465a-a7c7-bb4b99caf269_46975339_743500792673207_914886806380478464_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\5a46874c-33f0-466f-9d2e-3e09cea39153_1d63ba1accac1d2853466dc57ecdd5d2.jpg" />
+    <Content Include="UploadedFiles\HealthCard\677bb951-fa0b-4433-b858-f60a5ec5c24a_comment_RHY91Pg7OpPvkY2kI1zgBpVRvA91D06C,w400.jpg" />
+    <Content Include="UploadedFiles\HealthCard\6ea46237-506d-4378-aa59-85b7a93d9990_1d63ba1accac1d2853466dc57ecdd5d2.jpg" />
+    <Content Include="UploadedFiles\HealthCard\78d7a5aa-bc56-4ef9-a8b3-f7674d243cd8_36177210_1950080311711148_3896899169977106432_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\89353688-4931-4377-99f5-c444a334f641_1.png" />
+    <Content Include="UploadedFiles\HealthCard\ada5e356-18e5-49c2-86b8-68f8bcbd8840_511c630794_krystian_chuj.jpg" />
+    <Content Include="UploadedFiles\HealthCard\c57157e6-1deb-45a1-897e-98d02b43a169_4179e536d7c4e91046134bd841bf786c.jpg" />
+    <Content Include="UploadedFiles\HealthCard\d24aa0ce-b1f2-4747-b8f8-1eef7dd6dffb_46975339_743500792673207_914886806380478464_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\d3a01862-bcd2-4f75-840d-90205f9ed7ff_43148749_2079107282134221_3568684916042366976_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\d8f4934e-2d7a-404b-a6e5-c1002d598409_511c630794_krystian_chuj.jpg" />
+    <Content Include="UploadedFiles\HealthCard\e0a6e986-da2f-4c08-92db-639bac89824f_46156400_356847455122487_6774767639026728960_n.jpg" />
+    <Content Include="UploadedFiles\HealthCard\efaa7fc5-e1f7-42ce-80c5-729eac65024e_46800190_742736319416321_2648322657719681024_n.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -488,6 +505,31 @@
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="UploadedFiles\HealthCard\0b4cbeb3-0568-4a9a-a224-621f6fef2c66_246_111492166.doc" />
+    <Content Include="UploadedFiles\HealthCard\11f1a73a-f99a-4da0-b252-a47be6a645b4_" />
+    <Content Include="UploadedFiles\HealthCard\235b266e-9818-45d0-8d66-e73dc7283470_" />
+    <Content Include="UploadedFiles\HealthCard\23681761-a757-4d02-8bf2-0a2944f50531__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\2f4a97a4-84c5-4d4e-9458-853e21cd0e4f_" />
+    <Content Include="UploadedFiles\HealthCard\360ec285-3859-4181-ba97-87154653fd2e__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\3b212b45-b1b3-435a-8fd6-f42f26455fa8_" />
+    <Content Include="UploadedFiles\HealthCard\3f04dfcd-acb3-4040-b8e7-af2f40097737__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\411bf33c-ebe7-4fcc-9833-ebbbcd5c55a3_" />
+    <Content Include="UploadedFiles\HealthCard\460225cf-450b-4dbe-9a9a-447b88936610_" />
+    <Content Include="UploadedFiles\HealthCard\472fdde7-f190-45e2-93fa-2270c0f8955f_ćwiczenia 11 %281%29.pdf" />
+    <Content Include="UploadedFiles\HealthCard\57c8dad0-81a9-4ea6-85c5-bf49453e30a3__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\5c8c2418-22cd-4ff3-8983-54baa080a8c0_" />
+    <Content Include="UploadedFiles\HealthCard\6f1d66c2-6a98-4410-8914-14ddddc14db5_BaneryWNS1819 %281%29.docx" />
+    <Content Include="UploadedFiles\HealthCard\74287a05-6128-434d-9f66-581361822f3b_" />
+    <Content Include="UploadedFiles\HealthCard\799aaf5b-2393-4489-95a0-d1f8d4fef6d3_" />
+    <Content Include="UploadedFiles\HealthCard\7d734e07-690b-40fd-900d-049b6fe380c3_ćwiczenia 11.pdf" />
+    <Content Include="UploadedFiles\HealthCard\8b30acd9-e657-4d65-a16e-bbdf318cdfff__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\ac357673-b021-44cb-9d25-b9e90c51f11c__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\aee7f579-e8c7-4789-8c8e-0d3026767980__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\b09e4e33-a2c1-40bd-85aa-b95fb03dc3db_" />
+    <Content Include="UploadedFiles\HealthCard\be5e06b1-ad95-4a29-b838-02cfa9955fed__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\c6e3f06d-4a96-457a-8dda-fb956b9eac8a_" />
+    <Content Include="UploadedFiles\HealthCard\d5219d72-a52c-4146-8e41-a4e95dd198b6__all.pdf" />
+    <Content Include="UploadedFiles\HealthCard\e325ab8f-7105-4be2-84bb-60a65aca4ab9_" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
