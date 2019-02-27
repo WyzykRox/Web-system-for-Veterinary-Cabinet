@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Weterzynarze.Models.News>
 @{
     ViewBag.Title = "Home Page";
+    var count = 0;
 }
 
 <div class="jumbotron">
@@ -37,33 +38,48 @@
     <div class="col-md-4">
         <h2>Usługi</h2>
         <p>
-            Prowadzimy podstawowe usługu takie jak:<br />
-            @foreach (var item in ViewBag.Service)
-            {
-                @item.Name<br />
-            }
-            i inne.
+            <ul>
+    Prowadzimy podstawowe usługu takie jak:
+    <br />
+    @foreach (var item in ViewBag.Service)
+    {
+
+        <li>@item.Name</li>
+
+    }
+
+
+</ul>
+    i inne.
         </p>
 
     </div>
 
     
-    <div align="center" class="row-fluid">
-        
+    <div class="col-md-12" align="center">
+
         <h1 class="text-center">Tablica Ogłoszeń</h1>
         <hr />
         @foreach (var item in Model)
         {
+            if(count % 2 == 0 && count !=0)
+            {
+            <div class="col-md-12"><hr /></div>
+
+            }
+            
+            
             <div class="col-md-1"></div>
-            <div class="col-md-4 h-50 d-inline-block" style="border:2px solid Black" align-left:5px>
+            <div class="col-md-5 bg-info" style="border:2px solid Yellow">
                 <h2>@item.Title</h2>
                 <article>
-                    <br />
+
                     @item.Synopsis
                 </article>
-
             </div>
-            <div class="col-md-1"></div>
+
+            
+            count = count + 1;
         }
 
     </div>
