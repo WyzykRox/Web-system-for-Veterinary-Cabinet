@@ -52,8 +52,7 @@ namespace Weterzynarze.Controllers
         public ActionResult ToDayvisits() 
         {
             DateTime time = DateTime.Now;
-           // var visits = db.Visits.Include(v => v.Zwierzak).ToList();
-            //visits = visits.Where(_ => _.VisitDate.Date.Year == time.Date.Year && _.VisitDate.Date.Month == time.Date.Month && _.VisitDate.Date.Day == time.Date.Day).ToList();
+          
             var visits = db.Visits.Include(v => v.Zwierzak).Where(_ => DbFunctions.TruncateTime(_.VisitDate) == time.Date).ToList();
 
             

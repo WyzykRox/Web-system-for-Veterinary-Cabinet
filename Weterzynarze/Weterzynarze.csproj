@@ -393,6 +393,7 @@
     <Content Include="Content\_bootstrap-datetimepicker.less" />
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\GabWet - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -413,7 +414,7 @@
     <Content Include="UploadedFiles\HealthCard\181dd0ff-4e8f-4a11-bbe8-b1eed1ba2598_46792307_745879022435384_7154461813352955904_n.jpg" />
     <Content Include="UploadedFiles\HealthCard\23944957-7027-433a-b4b0-7b43293e50e6_46689650_742191059470847_2748702661971804160_n.jpg" />
     <Content Include="UploadedFiles\HealthCard\3b798431-0eb4-4b51-aa06-904a9011dc5d_46523530_742351869454766_9211014780289024000_n.jpg" />
-    <Content Include="UploadedFiles\HealthCard\476b7018-6bf3-465a-a7c7-bb4b99caf269_46975339_743500792673207_914886806380478464_n.jpg" />
+    <Content Include="Picture\476b7018-6bf3-465a-a7c7-bb4b99caf269_46975339_743500792673207_914886806380478464_n.jpg" />
     <Content Include="UploadedFiles\HealthCard\5a46874c-33f0-466f-9d2e-3e09cea39153_1d63ba1accac1d2853466dc57ecdd5d2.jpg" />
     <Content Include="UploadedFiles\HealthCard\677bb951-fa0b-4433-b858-f60a5ec5c24a_comment_RHY91Pg7OpPvkY2kI1zgBpVRvA91D06C,w400.jpg" />
     <Content Include="UploadedFiles\HealthCard\6ea46237-506d-4378-aa59-85b7a93d9990_1d63ba1accac1d2853466dc57ecdd5d2.jpg" />
@@ -426,7 +427,9 @@
     <Content Include="UploadedFiles\HealthCard\d8f4934e-2d7a-404b-a6e5-c1002d598409_511c630794_krystian_chuj.jpg" />
     <Content Include="UploadedFiles\HealthCard\e0a6e986-da2f-4c08-92db-639bac89824f_46156400_356847455122487_6774767639026728960_n.jpg" />
     <Content Include="UploadedFiles\HealthCard\efaa7fc5-e1f7-42ce-80c5-729eac65024e_46800190_742736319416321_2648322657719681024_n.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -533,7 +536,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Picture\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

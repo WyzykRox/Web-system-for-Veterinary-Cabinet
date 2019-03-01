@@ -62,25 +62,18 @@ namespace Weterzynarze.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CreateTime,Description,Treatment,AnimalID,uslugaID,FilesSrcList")] HealthCard healthCard)
-        {
-            
-     
+        {        
             if (ModelState.IsValid)
             {
                 var animals = db.Animals.Where(x => x.ID == healthCard.AnimalID).First();
                 healthCard.Animal = animals;
                 healthCard.FilesSrcList = new List<FilesHealthCard>();
                 //pobierze liste plikow
-
-
-
                 // HttpPostedFileBase file = Request.Files["Obrazki"];
                 var files = Enumerable.Range(0, Request.Files.Count)
                         .Select(i => Request.Files[i]);
-
                 foreach (var file in files )
-                {
-                    
+                {                  
                     //Checking file is available to save.  
                     if (file != null)
                     {
@@ -97,9 +90,7 @@ namespace Weterzynarze.Controllers
                         //assigning file uploaded status to ViewBag for showing message to user.  
                         ViewBag.UploadStatus = files.Count().ToString() + " files uploaded successfully.";
                     }
-
-                }
-                
+                }            
                 db.HealthCards.Add(healthCard);
                 db.SaveChanges();
                 return RedirectToAction("Create", "HistryVisits", new { Date = healthCard.CreateTime , AnimalID = healthCard.AnimalID });

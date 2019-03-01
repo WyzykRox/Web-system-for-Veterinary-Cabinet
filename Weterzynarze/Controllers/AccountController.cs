@@ -168,10 +168,10 @@ namespace Weterzynarze.Controllers
 
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
-                   // userManager.AddToRole(user.Id, "User");
+                    // userManager.AddToRole(user.Id, "User");
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        
                         // TO DO dodanie nowego user profile, context wziac z profiles controller
                         Profile userProfile = new Profile(user.Email);
                         WetContext db = new WetContext();
@@ -180,9 +180,9 @@ namespace Weterzynarze.Controllers
                         userManager.AddToRole(user.Id, "User");
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        SendMail(user.Email, "Dziękujemy za założenie konta na naszym portalu aby potwierdzić email wejdź w ten link " + callbackUrl , " Powiadomienie z gabinetu Gab wet");
+                        SendMail(user.Email, "Dziękujemy za założenie konta na naszym portalu aby potwierdzić email wejdź w ten link " + callbackUrl, " Powiadomienie z gabinetu Gab wet");
 
-
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
@@ -190,7 +190,7 @@ namespace Weterzynarze.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Edit", "Profiles", new { id = userProfile.ID} );
                     }
                     AddErrors(result);
                 }

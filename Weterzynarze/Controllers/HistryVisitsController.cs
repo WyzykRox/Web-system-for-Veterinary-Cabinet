@@ -43,8 +43,13 @@ namespace Weterzynarze.Controllers
         {
 
             var visit = db.Visits.Where(_ => _.VisitDate == Date).First();
-            HistryVisit histryVisit = new HistryVisit { Zwierzak = visit.Zwierzak, VisitDate = visit.VisitDate, User = visit.User, Description = visit.Description, AnimalID = visit.AnimalID };
-            ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.ID == AnimalID), "ID", "Name");
+            HistryVisit histryVisit = new HistryVisit
+            { Zwierzak = visit.Zwierzak,
+                VisitDate = visit.VisitDate,
+                User = visit.User,
+                Description = visit.Description,
+                AnimalID = visit.AnimalID };
+            //ViewBag.AnimalID = new SelectList(db.Animals.Where(_ => _.ID == AnimalID), "ID", "Name");
             return View(histryVisit);
         }
 
