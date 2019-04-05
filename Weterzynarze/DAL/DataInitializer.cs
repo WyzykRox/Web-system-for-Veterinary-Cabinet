@@ -12,24 +12,23 @@ namespace Weterzynarze.DAL
     {
         protected override void Seed(WetContext context)
         {
+            
             var roleManager = new RoleManager<IdentityRole>(
                 new RoleStore<IdentityRole>(new ApplicationDbContext()));
-
             var userManager = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(new ApplicationDbContext()));
-
+            //utworzenie ról
             roleManager.Create(new IdentityRole("Admin"));
             roleManager.Create(new IdentityRole("User"));
 
-           
 
-            var user = new ApplicationUser { UserName = "janusz@janusz.com" };
+            var user = new ApplicationUser { UserName = "janusz@janusz.com", Email = "janusz@janusz.com" };
             string pass = "janusz";
             userManager.Create(user, pass);
             userManager.AddToRole(user.Id, "Admin");
             userManager.AddToRole(user.Id, "User");
 
-            var user2 = new ApplicationUser { UserName = "grazyna@grazyna.com" };
+            var user2 = new ApplicationUser { UserName = "grazyna@grazyna.com", Email = "grazyna@grazyna.com" };
             string pass2 = "grazyna";
             userManager.Create(user2, pass2);
             userManager.AddToRole(user.Id, "User");

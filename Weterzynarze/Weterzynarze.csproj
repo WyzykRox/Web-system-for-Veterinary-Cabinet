@@ -394,6 +394,7 @@
     <Content Include="Content\bootstrap-datetimepicker-build.less" />
     <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\GabWet - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\WetGab - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
